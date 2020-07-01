@@ -1,0 +1,43 @@
+server:
+  port: 3333
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:4444/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+  endpoint:
+    health:
+      show-details: always
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      defaultFilters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+      routes:
+      - id: dashboard-service
+        uri: lb://dashboard-service
+        predicates:
+        - Path=/dashboard/**
+      - id: openapi
+        uri: http://localhost:${server.port}
+        predicates:
+        - Path=/v3/api-docs/**
+        filters:
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
