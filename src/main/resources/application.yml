@@ -35,6 +35,10 @@ spring:
         uri: lb://dashboard-service
         predicates:
         - Path=/dashboard/**
+      - id: user-settings-service
+        uri: lb://user-settings-service
+        predicates:
+        - Path=/user-settings/**
       - id: openapi
         uri: http://localhost:${server.port}
         predicates:
