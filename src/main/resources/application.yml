@@ -2,6 +2,8 @@ server:
   port: 3333
 
 eureka:
+  instance:
+    preferIpAddress: true
   client:
     serviceUrl:
       defaultZone: http://localhost:4444/eureka/
@@ -39,6 +41,10 @@ spring:
         uri: lb://user-settings-service
         predicates:
         - Path=/user-settings/**
+      - id: history-service
+        uri: lb://history-service
+        predicates:
+        - Path=/history/**
       - id: monitoring-service
         uri: lb://monitoring-service
         predicates:
