@@ -41,10 +41,10 @@ spring:
         uri: lb://user-settings-service
         predicates:
         - Path=/user-settings/**
-      - id: history-service
-        uri: lb://history-service
+      - id: system-administration-service
+        uri: lb://system-administration-service
         predicates:
-        - Path=/history/**
+        - Path=/administration-groups/{segment},/administration-users/{segment}
       - id: monitoring-service
         uri: lb://monitoring-service
         predicates:
