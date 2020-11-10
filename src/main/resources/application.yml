@@ -46,9 +46,9 @@ spring:
         predicates:
         - Path=/administration-groups/{segment},/administration-users/{segment}
       - id: transaction-lookup-service
-          uri: lb://transaction-lookup-service
-          predicates:
-            - Path=/transactions-lookup/{segment},/transactions-lookup/pos/{segment}
+        uri: lb://transaction-lookup-service
+        predicates:
+        - Path=/transactions-lookup/{segment},/transactions-lookup/pos/{segment}
       - id: monitoring-service
         uri: lb://monitoring-service
         predicates:
