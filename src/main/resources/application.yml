@@ -48,7 +48,7 @@ spring:
       - id: transaction-lookup-service
         uri: lb://transaction-lookup-service
         predicates:
-        - Path=/transactions-lookup/{segment},/transactions-lookup/pos/{segment}
+        - Path=/transactions-lookup/**
       - id: monitoring-service
         uri: lb://monitoring-service
         predicates:
