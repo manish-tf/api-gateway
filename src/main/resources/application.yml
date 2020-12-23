@@ -8,16 +8,6 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:4444/eureka/
 
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-        - "*"
-  endpoint:
-    health:
-      show-details: always
-
 spring:
   application:
     name: api-gateway
@@ -59,3 +49,5 @@ spring:
         - Path=/v3/api-docs/**
         filters:
         - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+  main:
+    banner-mode: off
