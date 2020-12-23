@@ -14,6 +14,6 @@ FROM openjdk:8-jdk-alpine
 ARG JAR_FILE=/workspace/target/*.jar
 COPY --from=build ${JAR_FILE} /opt/service.jar
 
-EXPOSE 4011 4012
+EXPOSE 3333
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/opt/service.jar"]
