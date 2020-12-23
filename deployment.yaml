@@ -22,11 +22,11 @@ spec:
               containerPort: 3333
           livenessProbe:
             httpGet:
-              path: /actuator/health
+              path: /actuator/health/liveness
               port: 3333
           readinessProbe:
             httpGet:
-              path: /actuator/health
+              path: /actuator/health/readiness
               port: 3333
 ---
 apiVersion: v1
