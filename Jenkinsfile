@@ -1,43 +1,74 @@
+def remote = [:]
+remote.name = "buildserver"
+remote.host = "192.168.56.111"
+remote.allowAnyHosts = true
+
+def remoteDirectory = "./jenkins-ws/${env.JOB_NAME}"
+def privateRegistry = "10.1.5.151:32000"
+def dockerImageName = "${privateRegistry}/${env.JOB_NAME}"
+
 pipeline {
     agent any
 
+    options {
+        disableConcurrentBuilds()
+    }
+
     stages {
-        stage('Build') {
+
+        stage("Stop Kubernetes Deployment") {
             steps {
-				// build maven project
-                sh 'mvn clean compile'
+                sh "microk8s kubectl delete -f deployment.yaml || true"
+                sh "microk8s ctr images rm localhost:32000/${env.JOB_NAME}:registry"
             }
         }
-        stage('Test') {
+
+        stage("Build Docker Image") {
             steps {
-				// run unit tests
-                sh 'mvn test'
-            }
-            post {
-                success {
-					// publish unit tests
-                    junit '**/target/surefire-reports/TEST-*.xml'
+                script {
+                    withCredentials([sshUserPrivateKey(credentialsId: 'buildserverCredentialsID', keyFileVariable: 'identity', passphraseVariable: '', usernameVariable: 'vmadmin')]) {
+                        remote.user = vmadmin
+                        remote.identityFile = identity
+
+                        echo "Delete previous source in ${remote.name}"
+                        sshCommand remote: remote,
+                        failOnError: false,
+                        command: "rm -r ${remoteDirectory}"
+
+                        echo "Copy new source to ${remote.name}"
+                        sshPut remote: remote,
+                        from: '.',
+                        into: './jenkins-ws'
+
+                        echo "Build and tag docker image in ${remote.name}"
+                        sshCommand remote: remote,
+                        command: "( cd ${remoteDirectory} ; docker build -t ${dockerImageName}:registry . )"
+
+                        echo "Push docker image to ${privateRegistry}"
+                        sshCommand remote: remote,
+                        command: "( cd ${remoteDirectory} ; docker push ${dockerImageName} )"
+                    }
                 }
             }
         }
-        stage('Publish') {
+
+        stage("Start Kubernetes Deployment") {
             steps {
-				// publish code coverage report
-                jacoco()
+                sh "microk8s kubectl apply -f deployment.yaml"
             }
         }
     }
+
     post {
 		always {
 			// sending email along with build log
 			emailext attachLog: true,
                 body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
                 recipientProviders: [developers(), requestor()],
-                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"			
-		}
-        success {
-        	// clean workspace
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
+
+            // clean workspace
             cleanWs()
-        }
+		}
     }
 }
