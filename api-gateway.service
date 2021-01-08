@@ -1,0 +1,10 @@
+[Unit]
+Description=API Gateway
+
+[Service]
+User=springboot
+Group=springboot
+ExecStart=/usr/lib/jvm/java-8-openjdk-amd64/bin/java -Dspring.profiles.active=staging -jar /opt/api-gateway/api-gateway-0.0.1-SNAPSHOT.jar
+
+[Install]
+WantedBy=multi-user.target

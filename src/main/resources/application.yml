@@ -3,7 +3,7 @@ server:
 
 eureka:
   instance:
-    preferIpAddress: true
+    preferIpAddress: false
   client:
     serviceUrl:
       defaultZone: http://localhost:4444/eureka/
@@ -34,7 +34,7 @@ spring:
       - id: system-administration-service
         uri: lb://system-administration-service
         predicates:
-        - Path=/administration-groups/{segment},/administration-users/{segment}
+        - Path=/administration-groups/**,/administration-users/**,/administration/**
       - id: transaction-lookup-service
         uri: lb://transaction-lookup-service
         predicates:
