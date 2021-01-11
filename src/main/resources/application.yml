@@ -18,7 +18,7 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowed-origins: "*"
+            allowed-origins: "http://localhost,http://bdotransact.tfstaging.com"
             allowed-methods: "*"
             allowed-headers: "*"
             allow-credentials: true
