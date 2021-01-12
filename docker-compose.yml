@@ -8,10 +8,6 @@ services:
       - "SPRING_PROFILES_ACTIVE=staging"
     ports:
       - "3333:3333"
-    links:
-      - eureka-server
-    depends_on:
-      - eureka-server
 
 networks:
   default:
