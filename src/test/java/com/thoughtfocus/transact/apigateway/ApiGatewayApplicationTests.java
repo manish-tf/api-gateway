@@ -1,4 +1,4 @@
-package org.thoughtfocus.plsg.apigateway;
+package com.thoughtfocus.transact.apigateway;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
