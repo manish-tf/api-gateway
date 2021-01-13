@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.thoughtfocus.transact</groupId>
 	<artifactId>api-gateway</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>api-gateway</name>
 	<description>api-gateway</description>
 
@@ -19,6 +19,8 @@
 		<java.version>1.8</java.version>
 		<spring-cloud.version>2020.0.0</spring-cloud.version>
 	</properties>
+
+	<packaging>jar</packaging>
 
 	<dependencies>
 		<dependency>
@@ -57,5 +59,14 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
