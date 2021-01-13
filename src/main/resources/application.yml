@@ -30,8 +30,8 @@ spring:
         uri: lb://user-settings-service
         predicates:
         - Path=/user-settings/**
-      - id: system-administration-service
-        uri: lb://system-administration-service
+      - id: administration-service
+        uri: lb://administration-service
         predicates:
         - Path=/administration-groups/**,/administration-users/**,/administration/**
       - id: transaction-lookup-service
