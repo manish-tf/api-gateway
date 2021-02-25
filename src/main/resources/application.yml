@@ -41,7 +41,11 @@ spring:
       - id: bin-service
         uri: lb://bin-service
         predicates:
-          - Path=/bin/card-type/**,/bin/currency-code/**,/bin/bin-range/**
+        - Path=/bin/card-type/**,/bin/currency-code/**,/bin/bin-range/**
+      - id: network-service
+        uri: lb://network-service
+        predicates:
+        - Path=/network/acquiring/**,/network/issuing/**
       - id: monitoring-service
         uri: lb://monitoring-service
         predicates:
