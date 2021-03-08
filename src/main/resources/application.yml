@@ -21,7 +21,6 @@ spring:
             allowed-origins: "*"
             allowed-methods: "*"
             allowed-headers: "*"
-            allow-credentials: true
       routes:
       - id: dashboard-service
         uri: lb://dashboard-service
@@ -31,14 +30,22 @@ spring:
         uri: lb://user-settings-service
         predicates:
         - Path=/user-settings/**
-      - id: system-administration-service
-        uri: lb://system-administration-service
+      - id: administration-service
+        uri: lb://administration-service
         predicates:
         - Path=/administration-groups/**,/administration-users/**,/administration/**
       - id: transaction-lookup-service
         uri: lb://transaction-lookup-service
         predicates:
         - Path=/transactions-lookup/**
+      - id: bin-service
+        uri: lb://bin-service
+        predicates:
+        - Path=/bin/card-type/**,/bin/currency-code/**,/bin/bin-range/**
+      - id: network-service
+        uri: lb://network-service
+        predicates:
+        - Path=/network/acquiring/**,/network/issuing/**
       - id: monitoring-service
         uri: lb://monitoring-service
         predicates:
