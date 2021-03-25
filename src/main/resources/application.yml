@@ -34,10 +34,10 @@ spring:
         uri: lb://administration-service
         predicates:
         - Path=/administration-groups/**,/administration-users/**,/administration/**
-      - id: transaction-lookup-service
-        uri: lb://transaction-lookup-service
+      - id: transaction-service
+        uri: lb://transaction-service
         predicates:
-        - Path=/transactions-lookup/**
+        - Path=/transaction/**
       - id: bin-service
         uri: lb://bin-service
         predicates:
