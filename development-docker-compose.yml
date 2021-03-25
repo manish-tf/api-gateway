@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: development-dockerfile
+    image: bdotransact/development-api-gateway
+    container_name: development-api-gateway
+    env_file:
+      - /opt/config/development.env
+    ports:
+      - "3334:3334"
+
+networks:
+  default:
+    external:
+      name: development
