@@ -26,10 +26,10 @@ spring:
         uri: lb://dashboard-service
         predicates:
         - Path=/dashboard/**
-      - id: user-settings-service
-        uri: lb://user-settings-service
+      - id: user-service
+        uri: lb://user-service
         predicates:
-        - Path=/user-settings/**
+        - Path=/user/**
       - id: administration-service
         uri: lb://administration-service
         predicates:
