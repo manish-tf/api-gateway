@@ -33,7 +33,7 @@ spring:
       - id: administration-service
         uri: lb://administration-service
         predicates:
-        - Path=/administration-groups/**,/administration-users/**,/administration/**
+        - Path=/administration/**
       - id: transaction-service
         uri: lb://transaction-service
         predicates:
