@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: localdev-dockerfile
+    image: bdotransact/api-gateway
+    container_name: api-gateway
+    env_file:
+      - /opt/config/localdev.env
+    ports:
+      - "3333:3333"
+
+networks:
+  default:
+    external:
+      name: localdev
