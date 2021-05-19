@@ -7,7 +7,9 @@ services:
       dockerfile: localdev-dockerfile
     image: bdotransact/api-gateway
     container_name: api-gateway
-    mem_limit: 500m
+    mem_limit: 400m
+    mem_reservation: 256M
+    cpus: 0.5
     env_file:
       - /opt/config/localdev.env
     ports:
