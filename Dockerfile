@@ -2,13 +2,11 @@ FROM openjdk:8-jdk-alpine as build
 
 WORKDIR /workspace
 
-COPY mvnw .
-COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 
-RUN chmod +x ./mvnw
-RUN ./mvnw package -DskipTests
+RUN apk add maven
+RUN mvn package -DskipTests
 
 FROM openjdk:8-jdk-alpine
 ARG JAR_FILE=/workspace/target/*.jar
