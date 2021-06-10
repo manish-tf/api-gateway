@@ -38,6 +38,10 @@ spring:
         uri: lb://device-service
         predicates:
         - Path=/device/**
+      - id: merchant-service
+        uri: lb://merchant-service
+        predicates:
+        - Path=/merchant/**
       - id: transaction-service
         uri: lb://transaction-service
         predicates:

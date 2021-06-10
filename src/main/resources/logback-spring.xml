@@ -9,79 +9,14 @@
 		</root>
 	</springProfile>
 
-	<springProfile name="staging">
+	<springProfile name="development,staging">
 		<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+		<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
 		<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}" />
 		<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
-		<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-			<destination>bdotransact.tfstaging.com:5000</destination>
-			<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-				<providers>
-					<timestamp/>
-					<pattern>
-						<pattern>
-							{
-							"service": "api-gateway",
-							"environment": "staging",
-							"logger": "%logger",
-							"level": "%level",
-							"message": "%message"
-							}
-						</pattern>
-					</pattern>
-					<stackTrace>
-						<throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
-							<maxDepthPerThrowable>30</maxDepthPerThrowable>
-							<maxLength>2048</maxLength>
-							<shortenedClassNameLength>20</shortenedClassNameLength>
-							<rootCauseFirst>true</rootCauseFirst>
-						</throwableConverter>
-					</stackTrace>
-				</providers>
-			</encoder>
-			<keepAliveDuration>5 minutes</keepAliveDuration>
-		</appender>
 		<root level="INFO">
+			<appender-ref ref="CONSOLE" />
 			<appender-ref ref="FILE" />
-			<appender-ref ref="LOGSTASH" />
-		</root>
-	</springProfile>
-
-	<springProfile name="development">
-		<include resource="org/springframework/boot/logging/logback/defaults.xml" />
-		<property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}" />
-		<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
-		<appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-			<destination>bdotransact.tfstaging.com:5000</destination>
-			<encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
-				<providers>
-					<timestamp/>
-					<pattern>
-						<pattern>
-							{
-							"service": "api-gateway",
-							"environment": "development",
-							"logger": "%logger",
-							"level": "%level",
-							"message": "%message"
-							}
-						</pattern>
-					</pattern>
-					<stackTrace>
-						<throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
-							<maxDepthPerThrowable>30</maxDepthPerThrowable>
-							<maxLength>2048</maxLength>
-							<shortenedClassNameLength>20</shortenedClassNameLength>
-							<rootCauseFirst>true</rootCauseFirst>
-						</throwableConverter>
-					</stackTrace>
-				</providers>
-			</encoder>
-			<keepAliveDuration>5 minutes</keepAliveDuration>
-		</appender>
-		<root level="INFO">
-			<appender-ref ref="FILE" />
-			<appender-ref ref="LOGSTASH" />
 		</root>
 	</springProfile>
 
