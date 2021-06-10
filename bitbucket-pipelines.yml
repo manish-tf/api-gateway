@@ -1,0 +1,19 @@
+image: openjdk:8-jdk-alpine
+pipelines:
+  branches:
+    development:
+      - step:
+          name: Build and Push Image
+          script:
+            - docker login -u $DOCKER_HUB_ID -p $DOCKER_HUB_PASSWORD
+            - docker build -t tfhub/api-gateway:dev .
+            - docker push tfhub/api-gateway:dev
+    master:
+      - step:
+          name: Build and Push Image
+          script:
+            - docker login -u $DOCKER_HUB_ID -p $DOCKER_HUB_PASSWORD
+            - docker build -t tfhub/api-gateway:latest .
+            - docker push tfhub/api-gateway:latest
+options:
+  docker: true
