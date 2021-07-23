@@ -8,6 +8,9 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:4444/eureka/
 
+cors:
+  urls: http://localhost:3000
+
 spring:
   application:
     name: api-gateway
@@ -18,7 +21,7 @@ spring:
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowed-origins: "*"
+            allowed-origins: "${cors.urls}"
             allowed-methods: "*"
             allowed-headers: "*"
       routes:
