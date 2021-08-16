@@ -65,6 +65,10 @@ spring:
         uri: lb://websocket-server
         predicates:
         - Path=/**
+      - id: authorization-service
+        uri: lb://authorization-service
+        predicates:
+        - Path=/authorization/**
       - id: openapi
         uri: http://localhost:${server.port}
         predicates:
