@@ -69,6 +69,10 @@ spring:
         uri: lb://log-viewer
         predicates:
         - Path=/logs/**
+      - id: voice-authorization
+        uri: lb://voice-authorization
+        predicates:
+        - Path=/voice-authorization/**
       - id: websocket-server
         uri: lb://websocket-server
         predicates:
