@@ -73,6 +73,10 @@ spring:
         uri: lb://voice-authorization
         predicates:
         - Path=/voice-authorization/**
+      - id: override-denial
+        uri: lb://override-denial
+        predicates:
+        - Path=/override-denial/**
       - id: websocket-server
         uri: lb://websocket-server
         predicates:
