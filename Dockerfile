@@ -19,3 +19,13 @@ ENV TZ=Asia/Kolkata
 EXPOSE 3333
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/opt/service.jar"]
+
+FROM openjdk:8-jdk-alpine
+WORKDIR /workspace
+
+#.cer file in the same folder as your Dockerfile
+ARG CERT="bdotransact.tfstaging.com.cer"
+
+#import certificate into java
+COPY $CERT /workspace/
+RUN keytool -importcert -file $CERT -alias bdotransact.tfstaging.com -keystore cacerts -storepass changeit -noprompt
