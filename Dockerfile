@@ -28,4 +28,4 @@ ARG CERT="bdotransact.tfstaging.com.cer"
 
 #import certificate into java
 COPY $CERT /workspace/
-RUN keytool -importcert -file $CERT -alias bdotransact.tfstaging.com -cacerts -storepass changeit -noprompt
+RUN keytool -importcert -file $CERT -alias bdotransact.tfstaging.com -keystore cacerts -storepass changeit -noprompt
