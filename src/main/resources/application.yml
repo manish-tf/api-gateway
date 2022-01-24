@@ -29,6 +29,10 @@ spring:
         uri: lb://dashboard-service
         predicates:
         - Path=/dashboard/**
+      - id: system-service
+        uri: lb://system-service
+        predicates:
+        - Path=/system-service/**
       - id: user-service
         uri: lb://user-service
         predicates:
@@ -81,10 +85,6 @@ spring:
         uri: lb://websocket-server
         predicates:
         - Path=/**
-      - id: system-service
-        uri: lb://system-service
-        predicates:
-        - Path=/logs/**,/service-manager/**
       - id: openapi
         uri: http://localhost:${server.port}
         predicates:
