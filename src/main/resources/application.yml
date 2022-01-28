@@ -29,10 +29,10 @@ spring:
         uri: lb://dashboard-service
         predicates:
         - Path=/dashboard/**
-      - id: system-service
-        uri: lb://system-service
+      - id: aix-connect
+        uri: lb://aix-connect
         predicates:
-        - Path=/system-service/**
+        - Path=/service-manager/**,/logs/**
       - id: user-service
         uri: lb://user-service
         predicates:
