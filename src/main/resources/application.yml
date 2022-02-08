@@ -33,14 +33,10 @@ spring:
         uri: lb://aix-connect
         predicates:
         - Path=/service-manager/**,/logs/**
-      - id: user-service
-        uri: lb://user-service
-        predicates:
-        - Path=/user/**
       - id: administration-service
         uri: lb://administration-service
         predicates:
-        - Path=/administration/**
+        - Path=/administration/**,/user/**
       - id: device-service
         uri: lb://device-service
         predicates:
