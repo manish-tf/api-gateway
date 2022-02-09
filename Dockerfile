@@ -1,14 +1,13 @@
-FROM openjdk:8-jdk-alpine as build
+FROM maven:3-openjdk-8 as build
 
 WORKDIR /workspace
 
 COPY pom.xml .
 COPY src src
 
-RUN apk add maven
 RUN mvn package -DskipTests
 
-FROM openjdk:8-jdk-alpine
+FROM adoptopenjdk/openjdk8:alpine-jre
 ARG JAR_FILE=/workspace/target/*.jar
 COPY --from=build ${JAR_FILE} /opt/service.jar
 
