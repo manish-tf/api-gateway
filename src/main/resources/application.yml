@@ -32,7 +32,7 @@ spring:
       - id: aix-connect
         uri: lb://aix-connect
         predicates:
-        - Path=/service-manager/**,/logs/**
+        - Path=/service-manager/**,/logs/**,/dialog-manager/**
       - id: administration-service
         uri: lb://administration-service
         predicates:
