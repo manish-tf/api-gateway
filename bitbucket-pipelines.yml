@@ -1,4 +1,8 @@
-image: openjdk:8-jdk-alpine
+image: maven:3-openjdk-11
+
+clone:
+  depth: full
+
 pipelines:
   branches:
     development:
@@ -15,5 +19,16 @@ pipelines:
             - docker login -u $DOCKER_HUB_ID -p $DOCKER_HUB_PASSWORD
             - docker build -t tfhub/api-gateway:latest .
             - docker push tfhub/api-gateway:latest
+      - step:
+          name: SonarQube analysis
+          caches:
+            - maven
+            - sonar
+          script:
+            - mvn verify -DskipTests=true -Dmaven.test.failure.ignore=true sonar:sonar
 options:
   docker: true
+
+definitions:
+  caches:
+    sonar: ~/.sonar
