@@ -91,5 +91,7 @@ spring:
         - Path=/v3/api-docs/**
         filters:
         - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+    inetutils:
+      timeout-seconds: 10
   main:
     banner-mode: off
