@@ -4,6 +4,7 @@ server:
 eureka:
   instance:
     preferIpAddress: false
+    hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:4444/eureka/
