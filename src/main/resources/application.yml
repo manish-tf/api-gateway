@@ -4,7 +4,6 @@ server:
 eureka:
   instance:
     preferIpAddress: false
-    hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:4444/eureka/
@@ -17,9 +16,6 @@ spring:
     name: api-gateway
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
       defaultFilters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
       globalcors:
@@ -91,7 +87,5 @@ spring:
         - Path=/v3/api-docs/**
         filters:
         - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
-    inetutils:
-      timeout-seconds: 10
   main:
     banner-mode: off
