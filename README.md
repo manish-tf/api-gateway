@@ -7,6 +7,7 @@ This repository is API management tool that sits between a client and a collecti
 ### List of functionalities offered by the service
 * api gateway solves a very common use case where a UI application wants to proxy calls to one or more back end services.
 * The user needs to mention the services in the application.yml to access the backend services.
+* The user should run the api-gateway before running any services.
 
 ## Developer Setup
 Following software configurations are needed for the development:
