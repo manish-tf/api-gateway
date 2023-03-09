@@ -2,10 +2,10 @@
 
 ## Summary
 
-This repository is API management tool that sits between a client and a collection of backend services. It is written in [Spring-Boot](https://spring.io/projects/spring-boot) framework, is used by the application. 
+This repository is API management tool that sits between a client and a collection of backend services. It is written in [Spring-Boot](https://spring.io/projects/spring-boot) framework. 
 
 ### List of functionalities offered by the service
-* api gateway solves a very common use case where a UI application wants to proxy calls to one or more back end services.
+* api gateway solves a very common use case where a UI application wants to proxy calls to one or more backend services.
 * The user needs to mention the services in the application.yml to access the backend services.
 * The user should run the api-gateway before running any services.
 
@@ -20,7 +20,7 @@ Following software configurations are needed for the development:
 * [Postman](https://www.postman.com/downloads/)
 
 ## Branches and Branching Strategy
-The main Git branch is called `master` which is used for production. A long lived branch called `development` also exists that runs parallelly with `master` branch which will be used by all the developers to keep track of the latest code.
+The main Git branch is called `master` which is used for production. A long-lived branch called `development` also exists that runs parallel with `master` branch which will be used by all the developers to keep track of the latest code.
 
 The project exclusively uses Git-Flow branching strategy invented by *Vincent Driessen*.
 <p  align="center">
@@ -48,7 +48,7 @@ $ cd api-gateway/
 <br>
 </p>
 
-##### 2. Running from an command line
+##### 2. Running from a command line
 One of the ways that you can run your spring-boot application from command line is as follows :
 * First go to your project directory in command line [where is your project located ?]
 * Then in the next step you have to create jar file for that, this can be done as
@@ -56,8 +56,8 @@ One of the ways that you can run your spring-boot application from command line 
 ```sh
 "mvn clean install" for compile
 ```
-* jar file is created in the target sub-directory
-* Now go to target sub directory as jar was created inside of it , i.e cd target
+* jar file is created in the target subdirectory
+* Now go to target subdirectory where jar file was created, i.e. cd target
 * Now run the jar file in there. Use command java -jar name.jar [ name is the name of your created jar file.]
 
 ```sh
@@ -72,7 +72,7 @@ One of the ways that you can run your spring-boot application from command line 
     + The average of your code that has been covered running the test.
     + The average of your code that has been covered running the test.
     + Percentage of duplications and the number of duplicated blocks were found in your code.
-* Select the project you’ll able to view something as below.
+* Select the project, and you'll be able to view something as below.
 <p  align="center">
 <br>
 <img  src="https://docs.bitnami.com/images/img/how_to_guides/analyze-projects-sonarqube/initial-metrics-before-add-error.png"  height="400"  width="600"  />
