@@ -30,12 +30,14 @@ The project exclusively uses Git-Flow branching strategy invented by *Vincent Dr
 </p>
 
 ## Installation
-Follow the instructions to run identity service locally:
+Follow the instructions to run api-gateway locally:
 
 ```sh
 $ git clone git@bitbucket.org/tf-bdo-transact/api-gateway.git
 $ cd api-gateway/
 ```
+
+## Running the Api-Gateway
 
 ## Running the app
 
@@ -72,7 +74,7 @@ One of the ways that you can run your spring-boot application from command line 
     + The average of your code that has been covered running the test.
     + The average of your code that has been covered running the test.
     + Percentage of duplications and the number of duplicated blocks were found in your code.
-* Select the project, and you'll be able to view something as below.
+* Select the project, and you'll be able to view the report as below.
 <p  align="center">
 <br>
 <img  src="https://docs.bitnami.com/images/img/how_to_guides/analyze-projects-sonarqube/initial-metrics-before-add-error.png"  height="400"  width="600"  />
