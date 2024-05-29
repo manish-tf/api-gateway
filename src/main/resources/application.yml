@@ -56,7 +56,7 @@ spring:
       - id: transaction-service
         uri: lb://transaction-service
         predicates:
-        - Path=/transaction/**
+        - Path=/transaction/**,/web-archive/**
       - id: bin-service
         uri: lb://bin-service
         predicates:
