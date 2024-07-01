@@ -18,6 +18,7 @@ Following software configurations are needed for the development:
 * [Lombok](https://projectlombok.org/download)
 * [Git](https://git-scm.com/)
 * [Postman](https://www.postman.com/downloads/)
+* [Framework](https://spring.io/projects/spring-boot) (Spring Boot v2.6.3) REST API application/json
 
 ## Branches and Branching Strategy
 The main Git branch is called `master` which is used for production. A long-lived branch called `development` also exists that runs parallel with `master` branch which will be used by all the developers to keep track of the latest code.
