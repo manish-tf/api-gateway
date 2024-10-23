@@ -57,10 +57,13 @@ spring:
         uri: lb://transaction-service
         predicates:
         - Path=/transaction/**
+        
       - id: web-archive-service
         uri: lb://web-archive-service
         predicates:
         - Path=/web-archive/**
+        - Path=/api/v1/webarchive/job/**
+        
       - id: bin-service
         uri: lb://bin-service
         predicates:
